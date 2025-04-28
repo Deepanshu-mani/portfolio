@@ -37,7 +37,9 @@ export function Navigation() {
   return (
     <motion.div
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "py-2 bg-background/80 backdrop-blur-md shadow-md" : "py-4"
+        scrolled
+          ? `py-2 bg-${theme === "dark" ? "gray-900" : "white"}/80 backdrop-blur-md shadow-md`
+          : "py-4"
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -45,28 +47,37 @@ export function Navigation() {
     >
       <div className="container mx-auto flex justify-between items-center px-4">
         <div className="flex items-center gap-4">
-          <Badge variant="outline" className="rounded-2xl px-4 py-1 text-sm bg-background/80 backdrop-blur-sm">
-            Available for hire
-          </Badge>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Badge
+              variant="outline"
+              className={`rounded-2xl px-4 py-1 text-sm ${theme === "dark" ? "bg-background/80" : "bg-background/60"} backdrop-blur-sm`}
+            >
+              Available for hire
+            </Badge>
+          </motion.div>
         </div>
 
         <div className="flex-1 flex justify-center">
-          <div className="h-[60px] relative">
-            <GooeyNav
-              items={navItems}
-              particleCount={15}
-              particleDistances={[90, 10]}
-              particleR={100}
-              initialActiveIndex={0}
-              animationTime={600}
-              timeVariance={300}
-            />
+          <div className="h-[50px] relative">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+            >
+              <GooeyNav
+                items={navItems}
+                particleCount={15}
+                particleDistances={[90, 10]}
+                particleR={100}
+                initialActiveIndex={0}
+                animationTime={600}
+                timeVariance={300}
+              />
+            </motion.div>
           </div>
         </div>
 
-        <div>
-          <ThemeToggle />
-        </div>
+        <ThemeToggle />
       </div>
     </motion.div>
   )

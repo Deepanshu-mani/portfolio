@@ -53,7 +53,7 @@ export function Hero() {
 
   return (
     <section className="relative h-screen flex flex-col items-center justify-center px-4 pt-20">
-      <div className="absolute inset-0 z-[1]">
+      <div className="absolute inset-0 z-[2]">
         <Particles
           particleColors={isDarkMode ? ["#ffffff", "#ffffff", "#00e5ff"] : ["#000000", "#000000", "#00e5ff"]}
           particleCount={200}
@@ -120,7 +120,7 @@ export function Hero() {
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            <Button asChild size="lg" className="rounded-2xl">
+            <Button asChild size="lg" className="rounded-2xl ">
               <Link href="#contact">Get in touch</Link>
             </Button>
           </motion.div>
