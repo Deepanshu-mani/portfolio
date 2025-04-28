@@ -326,7 +326,7 @@ const { theme } = useTheme();
               <li
                 key={index}
                 className={`py-[0.6em] px-[1em] rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent]
-                  ${theme === "dark" ? "text-white" : "text-black"} ${
+                  ${theme === "dark"  || theme === "system" ? "text-white" : "text-black"} ${
                   activeIndex === index ? "active" : ""
                 }`}
                 onClick={(e) => handleClick(e, index)}
