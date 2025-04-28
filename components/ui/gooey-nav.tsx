@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-
+import { useTheme } from "next-themes";
 interface GooeyNavItem {
   label: string;
   href: string;
@@ -159,7 +159,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
     resizeObserver.observe(containerRef.current);
     return () => resizeObserver.disconnect();
   }, [activeIndex]);
-
+const { theme } = useTheme();
+ 
   return (
     <>
       {/* This effect is quite difficult to recreate faithfully using Tailwind, so a style tag is a necessary workaround */}
@@ -317,14 +318,15 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
             ref={navRef}
             className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
             style={{
-              color: "white",
+              color: theme === "dark" ? "white" : "black",
               textShadow: "0 1px 1px hsl(205deg 30% 10% / 0.2)",
             }}
           >
             {items.map((item, index) => (
               <li
                 key={index}
-                className={`py-[0.6em] px-[1em] rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent] text-white ${
+                className={`py-[0.6em] px-[1em] rounded-full relative cursor-pointer transition-[background-color_color_box-shadow] duration-300 ease shadow-[0_0_0.5px_1.5px_transparent]
+                  ${theme === "dark" ? "text-white" : "text-black"} ${
                   activeIndex === index ? "active" : ""
                 }`}
                 onClick={(e) => handleClick(e, index)}
