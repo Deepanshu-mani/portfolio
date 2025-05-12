@@ -175,9 +175,9 @@ const { theme } = useTheme();
             pointer-events: none;
             display: grid;
             place-items: center;
-            z-index: 10; /* Increase the z-index so it's above the navbar */
-            width: 80%; /* Adjust width to be smaller */
-            left: 10%;  /* Center the effect */
+            z-index: 10; 
+            width: 80%;
+            left: 10%; 
           }
           .effect.text {
             color: white;
@@ -187,7 +187,7 @@ const { theme } = useTheme();
             color: black;
           }
           .effect.filter {
-            filter: blur(7px) contrast(100) blur(0);
+            filter: blur(0.3px) ${theme === "dark" ? "contrast(500)" : "contrast(0)"}  blur(0.5px) ;
             mix-blend-mode: lighten;
           }
           .effect.filter::before {
@@ -195,18 +195,17 @@ const { theme } = useTheme();
             position: absolute;
             inset: -75px;
             z-index: -2;
-            background: black;
-            opacity: 1; /* Start with visible black background */
-            transition: opacity 0.3s ease-in-out; /* Transition the opacity */
+            opacity: 0; 
+            transition: opacity 0.3s ease-in-out;
           }
           .effect.active::before {
-            opacity: 0; /* Fade out the black background once the effect is active */
+            opacity: 0; 
           }
           .effect.filter::after {
             content: "";
             position: absolute;
             inset: 0;
-            background: white;
+            background: none;
             transform: scale(0);
             opacity: 0;
             z-index: -1;
